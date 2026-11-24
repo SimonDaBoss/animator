@@ -147,6 +147,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 .drawing-library {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 10px 16px;
   border-bottom: 1px solid #3a3a5e;
@@ -155,6 +156,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 
 .drawing-library select {
   width: 16rem;
+  max-width: 100%;
   min-width: 0;
   padding: 5px 8px;
   border: 1px solid #4a4a72;
@@ -167,6 +169,28 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 }
 
 .drawing-library select:focus-visible {
+  outline: 2px solid #b2a2eb;
+  outline-offset: 2px;
+}
+
+.color-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.color-control input {
+  width: 38px;
+  height: 30px;
+  padding: 2px;
+  border: 1px solid #4a4a72;
+  border-radius: 4px;
+  background: #24243e;
+  cursor: pointer;
+}
+
+.color-control input:focus-visible {
   outline: 2px solid #b2a2eb;
   outline-offset: 2px;
 }
