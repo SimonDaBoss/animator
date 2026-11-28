@@ -233,14 +233,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
   overflow-wrap: anywhere;
 }
 
-/* Button that reveals the code column again when it is hidden. */
-.reveal-code {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 10;
-}
-
 /* A centred square that fits the (possibly non-square) animation area. Give your
    <canvas> this class, so that drawings aren't stretched. */
 .canvas {
@@ -341,4 +333,132 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
   outline: 2px solid #b2a2eb;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Tetris workshop */
+.mode-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 7px 16px;
+  border-bottom: 1px solid #30304e;
+  background: #111121;
+}
+.mode-tab {
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: #a9a4bb;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.mode-tab[aria-pressed="true"] {
+  border-color: #615386;
+  color: #f0e8ff;
+  background: #322849;
+}
+.game-panel { display: none; }
+.mode-reveal-code { margin-left: auto; }
+.game-mode .game-panel {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px;
+  background: radial-gradient(ellipse at top right, #24203a 0%, #0d1020 65%);
+}
+.game-mode > .canvas-area,
+.game-mode > .timing-inspector,
+.game-mode > .animation-controls { display: none; }
+.tetris-workshop { max-width: 780px; margin: 0 auto; }
+.tetris-designer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.tetris-designer h2 { color: #eee5ff; font-size: 20px; font-weight: 600; }
+.tetris-designer p { max-width: 28rem; margin-top: 5px; color: #aaa7c2; font-size: 12px; line-height: 1.5; }
+.tetris-designer-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.game-button {
+  padding: 8px 10px;
+  border: 1px solid #55506e;
+  border-radius: 5px;
+  background: #25263e;
+  color: #e9e2f9;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.game-button:hover { background: #373651; }
+.game-button.primary { border-color: #a48cd0; background: #bb9de9; color: #181125; font-weight: 600; }
+.game-button.primary:hover { background: #cdb5f1; }
+.game-button:focus-visible,
+.mode-tab:focus-visible,
+.tetris-sidebar select:focus-visible,
+#tetris-canvas:focus-visible { outline: 2px solid #e5c4ff; outline-offset: 3px; }
+.tetris-layout {
+  display: grid;
+  grid-template-columns: minmax(140px, min(280px, 32vh)) minmax(150px, 210px);
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+}
+.tetris-board-wrap { position: relative; aspect-ratio: 1 / 2; width: 100%; }
+#tetris-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #625675;
+  border-radius: 7px;
+  box-shadow: 0 14px 50px #00000050;
+}
+#tetris-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  text-align: center;
+  border-radius: 7px;
+  background: #0d1020df;
+}
+#tetris-overlay[hidden] { display: none; }
+#tetris-overlay strong { color: #f4e9ff; font-size: 22px; }
+#tetris-overlay p { max-width: 17rem; color: #b9b5cd; font-size: 12px; line-height: 1.6; }
+.tetris-sidebar { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.game-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.game-stats > div { display: flex; flex-direction: column; gap: 5px; padding: 10px; border: 1px solid #3e3a53; border-radius: 6px; background: #191a2d; }
+.game-stats span { color: #b4a9c9; font-size: 11px; }
+.game-stats strong { color: #f0d99f; font-size: 21px; font-variant-numeric: tabular-nums; }
+.game-previews { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.game-previews h3 { font-size: 12px; font-weight: 500; color: #b4a9c9; }
+.game-previews canvas { display: block; width: 100%; height: auto; }
+.tetris-sidebar select { width: 100%; padding: 7px 6px; border: 1px solid #55506e; border-radius: 4px; color: #eee4ff; background: #25263e; color-scheme: dark; font: inherit; font-size: 12px; }
+.game-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.game-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.game-pad .game-button { min-height: 36px; }
+.game-hint { color: #aaa7c2; font-size: 11px; line-height: 1.7; }
+.game-status { margin-top: 14px; color: #d8c8ed; font-size: 12px; line-height: 1.5; }
+.game-help { margin-top: 14px; padding-top: 12px; border-top: 1px solid #3e3a53; font-size: 12px; color: #b4a9c9; }
+.game-help summary { cursor: pointer; color: #ddc8fa; }
+.game-help p { margin-top: 8px; line-height: 1.7; max-width: 38rem; }
+.workshop-notice { max-width: 780px; margin: 0 auto 12px; padding: 10px 12px; border-left: 3px solid #83dca5; border-radius: 4px; background: #192c29; color: #d0f3df; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.workshop-notice.error { border-color: #f1909e; background: #301d2a; color: #ffe0e4; }
+
+@media (max-width: 760px) {
+  .app { flex-direction: column; overflow: auto; }
+  .code-col { width: 100%; max-width: none; min-width: 0; height: 35vh; border-right: 0; border-bottom: 1px solid #3a3a5e; }
+  .animation-panel { flex: 1 0 65vh; }
+  .game-mode .game-panel { overflow: visible; }
+  .tetris-layout { gap: 12px; grid-template-columns: minmax(130px, 1.1fr) minmax(130px, 1fr); }
+  .color-control { margin-left: 0; }
+  .game-mode { flex-basis: auto; }
+  .game-previews canvas { max-height: 140px; object-fit: contain; object-position: top; }
 }
